@@ -1,0 +1,96 @@
+<div style="width: 50%; height:50%; float:left">
+  <canvas baseChart width="50" height="20"
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [colors]="lineChartColors"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>
+
+<form (submit)="formSubmitted()" #polyForm="ngForm">
+  <table class="example-full-width" cellspacing="0">
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Learning Rate" [(ngModel)]="learning_rate" name="learningrate"
+                 #learningrate="ngModel"
+                 ngControl="learningrate">
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="End learning rate"
+                 [(ngModel)]="end_learning_rate" name="endlearningrate"
+                 #endlearningrate="ngModel"
+                 ngControl="endlearningrate">
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Power" [(ngModel)]="po_wer" name="pwr"
+                 #pwr="ngModel"
+                 ngControl="pwr">
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Num samples per Epoch"
+                 [(ngModel)]="num_samples_per_epoch" name="numsamplesperepoch"
+                 #numsamplesperepoch="ngModel"
+                 ngControl="numsamplesperepoch">
+        </md-input-container>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Num epochs per decay"
+                 [(ngModel)]="num_epochs_per_decay" name="numepochsperdecay"
+                 #numepochsperdecay="ngModel"
+                 ngControl="numepochsperdecay">
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Max steps"
+                 [(ngModel)]="max_steps" name="maxsteps"
+                 #maxsteps="ngModel"
+                 ngControl="maxsteps">
+        </md-input-container>
+      </td>
+      <td>
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="Batch size"
+                 [(ngModel)]="batch_size" name="batchsize"
+                 #batchsize="ngModel"
+                 ngControl="batchsize">
+        </md-input-container>
+      </td>
+    </tr>
+
+  </table>
+
+  <md-select placeholder="Auflösung" [(ngModel)]="zoom" name="zoom">
+    <md-option [value]="10">
+      10
+    </md-option>
+    <md-option [value]="100">
+      100
+    </md-option>
+    <md-option [value]="1000">
+      1000
+    </md-option>
+    <md-option [value]="100000">
+      10000
+    </md-option>
+  </md-select>
+  <button md-button type="submit">Aktualisieren</button>
+</form>
+
+
+
