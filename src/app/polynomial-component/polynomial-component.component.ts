@@ -10,9 +10,7 @@ export class PolynomialComponentComponent implements OnInit {
   learning_rate = 0.1;
   end_learning_rate = 0.0001;
   po_wer = 3.0;
-  num_samples_per_epoch = 700;
-  batch_size = 56;
-  num_epochs_per_decay = 60.0;
+  decay_steps = 1000.0;
   max_steps = 2000;
   zoom = 10;
 
@@ -41,14 +39,13 @@ export class PolynomialComponentComponent implements OnInit {
   initChart() {
     this.lineChartLabels = new Array(this.max_steps / this.zoom);
 
-    let decaySteps = this.getDecaySteps();
     let currentLr = this.learning_rate;
 
     this.lineChartData[0] = {data: new Array(this.max_steps / this.zoom), label: this.lineChartData[0].label};
     this.lineChartData[0].data[0] = this.learning_rate;
     let x = 1;
     for (let j = 1; j < this.max_steps; j++) {
-      let decayed_lr = this.getPolinomialDecay(decaySteps, currentLr);
+      let decayed_lr = this.getPolinomialDecay(this.decay_steps, j, currentLr);
       if (j % this.zoom == 0) {
         this.lineChartData[0].data[x] = decayed_lr;
         this.lineChartLabels[x] = j;
@@ -58,19 +55,15 @@ export class PolynomialComponentComponent implements OnInit {
     }
   }
 
-  private getPolinomialDecay(decay_steps: number, current_lr): number {
+  private getPolinomialDecay(decay_steps: number, global_step: number, current_lr): number {
+    let g_step = Math.min(decay_steps, global_step);
+
     let a = (current_lr - this.end_learning_rate);
-    let b = (1 - (1 / decay_steps));
+    let b = (1 - (g_step / decay_steps));
     let pow = Math.pow(b, this.po_wer);
     let x = a * pow;
     let decayed_learning_rate = x + this.end_learning_rate;
     return decayed_learning_rate
-  }
-
-  private getDecaySteps(): number {
-    let decay_steps = Math.round(this.num_samples_per_epoch / this.batch_size *
-      this.num_epochs_per_decay)
-    return decay_steps;
   }
 
   public lineChartColors: Array<any> = [

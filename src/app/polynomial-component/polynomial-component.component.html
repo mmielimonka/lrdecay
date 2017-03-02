@@ -39,36 +39,20 @@
       </td>
       <td>
         <md-input-container class="example-full-width">
-          <input mdInput placeholder="Num samples per Epoch"
-                 [(ngModel)]="num_samples_per_epoch" name="numsamplesperepoch"
-                 #numsamplesperepoch="ngModel"
-                 ngControl="numsamplesperepoch">
+          <input mdInput placeholder="Decay steps"
+                 [(ngModel)]="decay_steps" name="decaysteps"
+                 #decaysteps="ngModel"
+                 ngControl="decaysteps">
         </md-input-container>
       </td>
     </tr>
     <tr>
       <td>
         <md-input-container class="example-full-width">
-          <input mdInput placeholder="Num epochs per decay"
-                 [(ngModel)]="num_epochs_per_decay" name="numepochsperdecay"
-                 #numepochsperdecay="ngModel"
-                 ngControl="numepochsperdecay">
-        </md-input-container>
-      </td>
-      <td>
-        <md-input-container class="example-full-width">
           <input mdInput placeholder="Max steps"
                  [(ngModel)]="max_steps" name="maxsteps"
                  #maxsteps="ngModel"
                  ngControl="maxsteps">
-        </md-input-container>
-      </td>
-      <td>
-        <md-input-container class="example-full-width">
-          <input mdInput placeholder="Batch size"
-                 [(ngModel)]="batch_size" name="batchsize"
-                 #batchsize="ngModel"
-                 ngControl="batchsize">
         </md-input-container>
       </td>
     </tr>
