@@ -58,7 +58,7 @@ export class PolynomialComponentComponent implements OnInit {
   private getPolinomialDecay(decay_steps: number, global_step: number, current_lr): number {
     let g_step = Math.min(decay_steps, global_step);
 
-    let a = (current_lr - this.end_learning_rate);
+    let a = (this.learning_rate - this.end_learning_rate);
     let b = (1 - (g_step / decay_steps));
     let pow = Math.pow(b, this.po_wer);
     let x = a * pow;
