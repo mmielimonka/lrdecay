@@ -8,10 +8,10 @@ import {Component, OnInit} from '@angular/core';
 export class PolynomialComponentComponent implements OnInit {
 
   learning_rate = 0.1;
-  end_learning_rate = 0.001;
+  end_learning_rate = 0.0001;
   po_wer = 3.0;
   num_samples_per_epoch = 700;
-  batch_size = 28;
+  batch_size = 56;
   num_epochs_per_decay = 60.0;
   max_steps = 2000;
   zoom = 10;
